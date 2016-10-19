@@ -16,8 +16,9 @@ public class Chess{
                 int[] moveFrom = b.getOriginMove(move);
                 int[] moveTo = b.getTargetMove(move);
                 Piece p = b.getCell(moveFrom[0],moveTo[0]);
+                
                 if (p != null && currentPlayer.getColor() == p.getOwner()){ //check if piece is owned by current player
-                    if (p.isValidMove()){
+                    if (p.isValidMove(moveFrom,moveTo)){
                         System.out.println("valid");
                     } else {
                         System.out.println("Invalid move (cant move there), try again.");

@@ -95,7 +95,7 @@ public class Board{
     }
     
     public int[] getTargetMove(String input){
-        String moveTo = input.split(" ")[0];
+        String moveTo = input.split(" ")[1];
         int[] coords = new int[2];
         coords[0] = moveTo.charAt(0)-65;
         coords[1] = moveTo.charAt(1)-49;

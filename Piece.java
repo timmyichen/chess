@@ -1,4 +1,4 @@
-public class Piece{
+public abstract class Piece{
     private int x;
     private int y;
     private char owner;
@@ -21,4 +21,6 @@ public class Piece{
     public char getOwner(){
         return this.owner;
     }
+    
+    abstract public boolean isValidMove(int[] moveFrom, int[] moveTo);
 }
