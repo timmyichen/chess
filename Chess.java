@@ -15,11 +15,21 @@ public class Chess{
             if (b.checkIfValidMove(move)){ //check input
                 int[] moveFrom = b.getOriginMove(move);
                 int[] moveTo = b.getTargetMove(move);
-                Piece p = b.getCell(moveFrom[0],moveTo[0]);
+                // System.out.println(moveFrom[0] + " " + moveFrom[1]);
+                // System.out.println(moveTo[0] + " " + moveTo[1]);
+                Piece p = b.getCell(moveFrom[0],moveFrom[1]);
                 
                 if (p != null && currentPlayer.getColor() == p.getOwner()){ //check if piece is owned by current player
-                    if (p.isValidMove(moveFrom,moveTo)){
-                        System.out.println("valid");
+                    if (p.isValidMove(moveFrom,moveTo)){ //check if piece can move as directed
+                        if (!p.isTargetFriendly(moveTo,b)){
+                            if (!p.isMoveObstructed(moveFrom,moveTo,b)){
+                                System.out.println("valid move");
+                            } else {
+                                System.out.println("Invalid move (move is obstructed), try again.");
+                            }
+                        } else {
+                            System.out.println("Invalid move (target is friendly), try again.");
+                        }
                     } else {
                         System.out.println("Invalid move (cant move there), try again.");
                     }

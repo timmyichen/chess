@@ -1,6 +1,6 @@
 public abstract class Piece{
-    private int x;
-    private int y;
+    public int x;
+    public int y;
     private char owner;
     private boolean hasMoved = false;
     
@@ -22,5 +22,11 @@ public abstract class Piece{
         return this.owner;
     }
     
+    public boolean isTargetFriendly(int[] moveTo, Board b){
+        return b.getCell(moveTo[0],moveTo[1]) != null && b.getCell(moveTo[0],moveTo[1]).owner == this.owner;
+    }
+    
     abstract public boolean isValidMove(int[] moveFrom, int[] moveTo);
+    
+    abstract public boolean isMoveObstructed(int[] moveFrom, int[] moveTo, Board b);
 }

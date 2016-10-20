@@ -1,5 +1,5 @@
 public class Board{
-    Piece[][] board = new Piece[8][8];
+    private Piece[][] board = new Piece[8][8];
     private String letters = "ABCDEFGH";
     
     public Board(){
@@ -7,6 +7,11 @@ public class Board{
             board[1][x] = new Pawn(x,1,'b'); //black pawns
             board[6][x] = new Pawn(x,6,'w'); //white pawns
         }
+        //test pieces
+        board[5][3] = new Pawn(4,3,'b');
+        board[5][4] = new Pawn(4,4,'w');
+        board[3][2] = new Rook(3,2,'w');
+        board[3][6] = new Rook(3,2,'b');
         
         //black rooks
         board[0][0] = new Rook(0,0,'b');
@@ -69,12 +74,13 @@ public class Board{
         try{
             moveFrom = input.split(" ")[0];
             moveTo = input.split(" ")[1];
+            // System.out.println(moveFrom.charAt(1) + " " + moveTo.charAt(1));
             if (this.letters.indexOf(moveFrom.charAt(0)) == -1 ||
             this.letters.indexOf(moveTo.charAt(0)) == -1 ||
-            (int)moveFrom.charAt(1)-48 < 0 || //-48 to convert char to int
-            (int)moveFrom.charAt(1)-48 > 7 || //where A=1, B=2, etc
-            (int)moveTo.charAt(1)-48 < 0 ||
-            (int)moveTo.charAt(1)-48 > 7
+            (int)moveFrom.charAt(1)-49 < 0 || //-49 to convert char to int
+            (int)moveFrom.charAt(1)-49 > 7 || //where A=0, B=1, etc
+            (int)moveTo.charAt(1)-49 < 0 ||
+            (int)moveTo.charAt(1)-49 > 7
             ){
                 return false;
             }
